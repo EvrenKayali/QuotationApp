@@ -1,26 +1,6 @@
 .text {
   font-style: italic;
   font-size: 18pt;
-  border: 1px solid #3498db;
+  border: 1px solid var(--primary-color);
   padding: 1em;
-}
-
-.button {
-  background-color: #3498db;
-  color: white;
-  transition: 0.3s;
-  cursor: pointer;
-  opacity: 0.9;
-  outline: 0;
-  padding: 1em 3em;
-  font-size: 10pt;
-}
-
-.button:hover {
-  opacity: 1.5;
-}
-
-.container {
-  margin: 5em auto 0 auto;
-  width: 80%;
 }

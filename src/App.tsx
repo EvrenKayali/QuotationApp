@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { Quote } from "./components/Quote/Quote";
 import { QuoteModel } from "./models/QuoteModel";
+
+import { QuotePlayer } from "./components/QuotePlayer/QuotePlayer";
 
 export const App = () => {
   const quotes: QuoteModel[] = [
@@ -31,22 +32,9 @@ export const App = () => {
     },
   ];
 
-  const [selectedQuote, setSelectedQuote] = useState<QuoteModel>(
-    quotes[Math.floor(Math.random() * quotes.length)]
-  );
-
-  useEffect(() => {
-    setTimeout(() => {
-      setSelectedQuote(quotes[Math.floor(Math.random() * quotes.length)]);
-    }, 5000);
-  });
-
-  const onNext = () =>
-    setSelectedQuote(quotes[Math.floor(Math.random() * quotes.length)]);
-
   return (
     <div className="App">
-      <Quote model={selectedQuote} nextClick={onNext}></Quote>
+      <QuotePlayer quotes={quotes}></QuotePlayer>
     </div>
   );
 };

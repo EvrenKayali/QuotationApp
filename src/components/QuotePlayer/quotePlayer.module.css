@@ -1,0 +1,29 @@
+.button {
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+  opacity: 0.9;
+  outline: 0;
+  padding: 1em 3em;
+  font-size: 10pt;
+}
+
+.button:hover {
+  opacity: 1.5;
+}
+.primary {
+  background-color: var(--primary-color);
+}
+
+.success {
+  background-color: var(--success-color);
+}
+
+.error {
+  background-color: var(--error-color);
+}
+
+.container {
+  margin: 5em auto 0 auto;
+  width: 80%;
+}
