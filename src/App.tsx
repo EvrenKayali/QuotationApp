@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { QuoteModel } from "./models/QuoteModel";
 import { QuotePlayer } from "./components/QuotePlayer/QuotePlayer";
+import { Header } from "./components/Header/Header";
 
 export const App = () => {
   const quotes: QuoteModel[] = [
@@ -33,6 +34,7 @@ export const App = () => {
 
   return (
     <div className="App">
+      <Header />
       <QuotePlayer quotes={quotes}></QuotePlayer>
     </div>
   );
