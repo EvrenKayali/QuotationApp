@@ -14,7 +14,7 @@ export const QuotePlayer = ({ quotes }: props) => {
     quotes[Math.floor(Math.random() * quotes.length)]
   );
 
-  const [delay, setDelay] = useState(500);
+  const [delay, setDelay] = useState(1000);
 
   const [isRunning, setIsRunning] = useState<boolean>(true);
 
