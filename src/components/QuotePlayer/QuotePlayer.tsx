@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import Slider from "rc-slider";
 import { Quote } from "../Quote/Quote";
 import { QuoteModel } from "../../models/QuoteModel";
 import { useInterval } from "../../hooks/useInterval";
-
-import "rc-slider/assets/index.css";
 
 import styles from "./quotePlayer.module.css";
 
@@ -54,9 +51,6 @@ export const QuotePlayer = ({ quotes }: props) => {
         >
           {playerState === true ? "Stop" : "Start"}
         </button>
-        <div style={{ width: 400 }}>
-          <Slider min={1} max={6} onChange={onIntervalChange} />
-        </div>
       </div>
     </div>
   );
