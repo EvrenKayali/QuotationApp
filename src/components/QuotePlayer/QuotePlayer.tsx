@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import Slider from "rc-slider";
 import { Quote } from "../Quote/Quote";
 import { QuoteModel } from "../../models/QuoteModel";
 import { useInterval } from "../../hooks/useInterval";
+
+import "rc-slider/assets/index.css";
 
 import styles from "./quotePlayer.module.css";
 
@@ -14,9 +17,11 @@ export const QuotePlayer = ({ quotes }: props) => {
     quotes[Math.floor(Math.random() * quotes.length)]
   );
 
+  const [delay, setDelay] = useState(3000);
+
   const [playerState, setPlayerState] = useState<boolean>(true);
 
-  const { start, stop } = useInterval(true, 3000, () => {
+  const { start, stop } = useInterval(true, delay, () => {
     setSelectedQuote(quotes[Math.floor(Math.random() * quotes.length)]);
   });
 
@@ -30,19 +35,29 @@ export const QuotePlayer = ({ quotes }: props) => {
     }
   };
 
+  const onIntervalChange = (i: number) => {
+    setDelay(i * 1000);
+    console.log(i);
+  };
+
   return (
     <div className={styles.container}>
       <Quote model={selectedQuote} />
-      <button
-        onClick={() => onPlayerStateChage()}
-        className={
-          playerState === true
-            ? `${styles.button} ${styles.error}`
-            : `${styles.button} ${styles.success}`
-        }
-      >
-        {playerState === true ? "Stop" : "Start"}
-      </button>
+      <div className={styles.controlPanel}>
+        <button
+          onClick={() => onPlayerStateChage()}
+          className={
+            playerState === true
+              ? `${styles.button} ${styles.error}`
+              : `${styles.button} ${styles.success}`
+          }
+        >
+          {playerState === true ? "Stop" : "Start"}
+        </button>
+        <div style={{ width: 400 }}>
+          <Slider min={1} max={6} onChange={onIntervalChange} />
+        </div>
+      </div>
     </div>
   );
 };
