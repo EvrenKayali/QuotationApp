@@ -1,39 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-export const useInterval = (
-  startImmediate: boolean,
-  duration: number,
-  callback: () => void
-) => {
-  const [count, updateCount] = useState(0);
-  const [intervalState, setIntervalState] = useState(
-    startImmediate === undefined ? true : startImmediate
-  );
-  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+const noop = () => {};
+
+export const useInterval = (delay: number | null, callback: () => void) => {
+  const savedCallback = useRef(noop);
 
   useEffect(() => {
-    if (intervalState) {
-      const intervalId = setInterval(() => {
-        updateCount(count + 1);
-        callback && callback();
-      }, duration);
-      setIntervalId(intervalId);
-    }
+    savedCallback.current = callback;
+  }, [callback]);
 
-    return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-        setIntervalId(null);
-      }
-    };
-  }, [intervalState, count]);
-  return {
-    intervalId,
-    start: () => {
-      setIntervalState(true);
-    },
-    stop: () => {
-      setIntervalState(false);
-    },
-  };
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 };

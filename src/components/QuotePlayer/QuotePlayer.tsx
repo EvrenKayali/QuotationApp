@@ -14,42 +14,31 @@ export const QuotePlayer = ({ quotes }: props) => {
     quotes[Math.floor(Math.random() * quotes.length)]
   );
 
-  const [delay, setDelay] = useState(3000);
+  const [delay, setDelay] = useState(500);
 
-  const [playerState, setPlayerState] = useState<boolean>(true);
+  const [isRunning, setIsRunning] = useState<boolean>(true);
 
-  const { start, stop } = useInterval(true, delay, () => {
+  useInterval(isRunning ? delay : null, () => {
     setSelectedQuote(quotes[Math.floor(Math.random() * quotes.length)]);
   });
 
-  const onPlayerStateChage = () => {
-    if (playerState) {
-      stop();
-      setPlayerState(false);
-    } else {
-      start();
-      setPlayerState(true);
-    }
-  };
-
-  const onIntervalChange = (i: number) => {
-    setDelay(i * 1000);
-    console.log(i);
-  };
+  function handleIsRunningChange() {
+    setIsRunning(!isRunning);
+  }
 
   return (
     <div className={styles.container}>
       <Quote model={selectedQuote} />
       <div className={styles.controlPanel}>
         <button
-          onClick={() => onPlayerStateChage()}
+          onClick={handleIsRunningChange}
           className={
-            playerState === true
+            isRunning === true
               ? `${styles.button} ${styles.error}`
               : `${styles.button} ${styles.success}`
           }
         >
-          {playerState === true ? "Stop" : "Start"}
+          {isRunning === true ? "Stop" : "Start"}
         </button>
       </div>
     </div>
