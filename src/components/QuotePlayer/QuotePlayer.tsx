@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { Quote } from "../Quote/Quote";
 import { QuoteModel } from "../../models/QuoteModel";
 import { useInterval } from "../../hooks/useInterval";
@@ -22,9 +22,13 @@ export const QuotePlayer = ({ quotes }: props) => {
     setSelectedQuote(quotes[Math.floor(Math.random() * quotes.length)]);
   });
 
-  function handleIsRunningChange() {
+  const handleIsRunningChange = () => {
     setIsRunning(!isRunning);
-  }
+  };
+
+  const handleDelayChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDelay(Number(e.target.value));
+  };
 
   return (
     <div className={styles.container}>
@@ -40,6 +44,10 @@ export const QuotePlayer = ({ quotes }: props) => {
         >
           {isRunning === true ? "Stop" : "Start"}
         </button>
+        <div>
+          <label>speed in ms: </label>
+          <input value={delay} type="text" onChange={handleDelayChange}></input>
+        </div>
       </div>
     </div>
   );
