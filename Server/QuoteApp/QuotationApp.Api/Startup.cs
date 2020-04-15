@@ -39,6 +39,8 @@ namespace QuotationApp.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseAuthorization();
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuotationApp.Api.Models;
+using System.Threading.Tasks;
 
 namespace QuotationApp.Api.Controllers
 {
@@ -17,8 +18,9 @@ namespace QuotationApp.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<QuotationModel> Get()
+        public async Task<IEnumerable<QuotationModel>> Get()
         {
+            await Task.Delay(10000);
             return new List<QuotationModel>
             {
                 new QuotationModel

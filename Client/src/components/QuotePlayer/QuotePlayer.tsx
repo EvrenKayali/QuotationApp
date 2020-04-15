@@ -1,25 +1,37 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import { Quote } from "../Quote/Quote";
 import { QuoteModel } from "../../models/QuoteModel";
 import { useInterval } from "../../hooks/useInterval";
 
 import styles from "./quotePlayer.module.css";
 
-export interface props {
-  quotes: QuoteModel[];
-}
+export const QuotePlayer = () => {
+  const [isQuotesLoaded, setIsQuotesLoaded] = useState<boolean>(false);
 
-export const QuotePlayer = ({ quotes }: props) => {
-  const [selectedQuote, setSelectedQuote] = useState<QuoteModel>(
-    quotes[Math.floor(Math.random() * quotes.length)]
-  );
+  const [quotes, setQuotes] = useState<QuoteModel[]>();
 
-  const [delay, setDelay] = useState(1000);
+  const [quoteIndex, setQuoteIndex] = useState<number>(0);
 
-  const [isRunning, setIsRunning] = useState<boolean>(true);
+  const [delay, setDelay] = useState(3000);
+
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+
+  useEffect(() => {
+    fetch("https:localhost:5001/Quotation")
+      .then((response) => response.json())
+      .then((response: QuoteModel[]) => {
+        setQuotes(response);
+        setIsQuotesLoaded(true);
+        setIsRunning(true);
+      });
+  }, []);
 
   useInterval(isRunning ? delay : null, () => {
-    setSelectedQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+    if (quotes && quoteIndex < quotes?.length) {
+      setQuoteIndex(quoteIndex + 1);
+    } else {
+      setQuoteIndex(0);
+    }
   });
 
   const handleIsRunningChange = () => {
@@ -32,23 +44,33 @@ export const QuotePlayer = ({ quotes }: props) => {
 
   return (
     <div className={styles.container}>
-      <Quote model={selectedQuote} />
-      <div className={styles.controlPanel}>
-        <button
-          onClick={handleIsRunningChange}
-          className={
-            isRunning === true
-              ? `${styles.button} ${styles.error}`
-              : `${styles.button} ${styles.success}`
-          }
-        >
-          {isRunning === true ? "Stop" : "Start"}
-        </button>
-        <div>
-          <label>speed in ms: </label>
-          <input value={delay} type="text" onChange={handleDelayChange}></input>
-        </div>
-      </div>
+      {!isQuotesLoaded ? (
+        "Loading..."
+      ) : (
+        <>
+          <Quote model={quotes ? quotes[quoteIndex] : null} />
+          <div className={styles.controlPanel}>
+            <button
+              onClick={handleIsRunningChange}
+              className={
+                isRunning === true
+                  ? `${styles.button} ${styles.error}`
+                  : `${styles.button} ${styles.success}`
+              }
+            >
+              {isRunning === true ? "Stop" : "Start"}
+            </button>
+            <div>
+              <label>speed in ms: </label>
+              <input
+                value={delay}
+                type="text"
+                onChange={handleDelayChange}
+              ></input>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
