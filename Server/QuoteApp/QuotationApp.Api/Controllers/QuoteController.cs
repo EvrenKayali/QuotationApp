@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using QuotationApp.Api.Models;
 using System.Threading.Tasks;
 
@@ -10,17 +9,10 @@ namespace QuotationApp.Api.Controllers
     [Route("[controller]")]
     public class QuotationController : ControllerBase
     {
-        private readonly ILogger<QuotationController> _logger;
-
-        public QuotationController(ILogger<QuotationController> logger)
-        {
-            _logger = logger;
-        }
-
         [HttpGet]
         public async Task<IEnumerable<QuotationModel>> Get()
         {
-            await Task.Delay(10000);
+            await Task.Delay(5000);
             return new List<QuotationModel>
             {
                 new QuotationModel
