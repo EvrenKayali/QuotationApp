@@ -8,7 +8,7 @@ Login azure from your azure cli.
 az login
 ```
 
-If we won't use an# existed azure resource group. First we need to create one.
+If we won't use any# existed azure resource group. First we need to create one.
 
 ```
 az group create --location australiaeast --name rg-tutorial
@@ -24,7 +24,13 @@ First we need to create service plan to create a webapp.
 az appservice plan create --name sp-phoneBook --resource-group rg-tutorial --sku FREE
 ```
 
-## Get publish Url
+Then we can create the webapp
+
+```
+az webapp create --name wa-tutorial --resource-group rg-tutorial --plan sp-tutorial
+```
+
+### Get publish Url
 
 To findout the ftp url to upload our code use below command.
 
@@ -32,7 +38,7 @@ To findout the ftp url to upload our code use below command.
 az webapp deployment list-publishing-profiles --name wa-tutorial --resource-group rg-tutorial
 ```
 
-## Upload Api
+### Upload Api
 
 ```
 az webapp deployment source config-zip --resource-group rg-tutorial --name wa-tutorial --src ./app.zip
