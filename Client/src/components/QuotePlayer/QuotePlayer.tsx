@@ -27,7 +27,7 @@ export const QuotePlayer = () => {
   }, []);
 
   useInterval(isRunning ? delay : null, () => {
-    if (quotes && quoteIndex < quotes?.length) {
+    if (quotes && quoteIndex < quotes?.length - 1) {
       setQuoteIndex(quoteIndex + 1);
     } else {
       setQuoteIndex(0);
