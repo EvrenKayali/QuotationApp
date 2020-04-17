@@ -17,7 +17,7 @@ export const QuotePlayer = () => {
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch("https:localhost:5001/Quotation")
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/Quotation`)
       .then((response) => response.json())
       .then((response: QuoteModel[]) => {
         setQuotes(response);

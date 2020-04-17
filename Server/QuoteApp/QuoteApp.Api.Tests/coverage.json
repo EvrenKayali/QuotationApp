@@ -49,10 +49,11 @@
             "41": 0,
             "43": 0,
             "45": 0,
-            "46": 0,
             "47": 0,
             "48": 0,
-            "49": 0
+            "49": 0,
+            "50": 0,
+            "51": 0
           },
           "Branches": [
             {
@@ -84,34 +85,6 @@
         }
       }
     },
-    "/Users/Evren/Repos/QuotationApp/Server/QuoteApp/QuotationApp.Api/WeatherForecast.cs": {
-      "QuotationApp.Api.WeatherForecast": {
-        "System.DateTime QuotationApp.Api.WeatherForecast::get_Date()": {
-          "Lines": {
-            "7": 0
-          },
-          "Branches": []
-        },
-        "System.Int32 QuotationApp.Api.WeatherForecast::get_TemperatureC()": {
-          "Lines": {
-            "9": 0
-          },
-          "Branches": []
-        },
-        "System.Int32 QuotationApp.Api.WeatherForecast::get_TemperatureF()": {
-          "Lines": {
-            "11": 0
-          },
-          "Branches": []
-        },
-        "System.String QuotationApp.Api.WeatherForecast::get_Summary()": {
-          "Lines": {
-            "13": 0
-          },
-          "Branches": []
-        }
-      }
-    },
     "/Users/Evren/Repos/QuotationApp/Server/QuoteApp/QuotationApp.Api/Models/QuotationModel.cs": {
       "QuotationApp.Api.Models.QuotationModel": {
         "System.String QuotationApp.Api.Models.QuotationModel::get_Text()": {
@@ -129,9 +102,16 @@
       }
     },
     "/Users/Evren/Repos/QuotationApp/Server/QuoteApp/QuotationApp.Api/Controllers/QuoteController.cs": {
-      "QuotationApp.Api.Controllers.QuotationController": {
-        "System.Collections.Generic.IEnumerable`1<QuotationApp.Api.Models.QuotationModel> QuotationApp.Api.Controllers.QuotationController::Get()": {
+      "QuotationApp.Api.Controllers.QuotationController/<Get>d__0": {
+        "System.Void QuotationApp.Api.Controllers.QuotationController/<Get>d__0::MoveNext()": {
           "Lines": {
+            "14": 1,
+            "15": 1,
+            "16": 1,
+            "17": 1,
+            "18": 1,
+            "19": 1,
+            "20": 1,
             "21": 1,
             "22": 1,
             "23": 1,
@@ -156,22 +136,7 @@
             "42": 1,
             "43": 1,
             "44": 1,
-            "45": 1,
-            "46": 1,
-            "47": 1,
-            "48": 1,
-            "49": 1,
-            "50": 1,
-            "51": 1
-          },
-          "Branches": []
-        },
-        "System.Void QuotationApp.Api.Controllers.QuotationController::.ctor(Microsoft.Extensions.Logging.ILogger`1<QuotationApp.Api.Controllers.QuotationController>)": {
-          "Lines": {
-            "14": 1,
-            "15": 1,
-            "16": 1,
-            "17": 1
+            "45": 1
           },
           "Branches": []
         }

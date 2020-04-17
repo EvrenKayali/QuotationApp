@@ -10,9 +10,8 @@ namespace QuotationApp.Api.Controllers
     public class QuotationController : ControllerBase
     {
         [HttpGet]
-        public async Task<IEnumerable<QuotationModel>> Get()
+        public IEnumerable<QuotationModel> Get()
         {
-            await Task.Delay(5000);
             return new List<QuotationModel>
             {
                 new QuotationModel
