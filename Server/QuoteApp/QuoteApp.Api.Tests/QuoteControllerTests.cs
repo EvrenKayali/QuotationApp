@@ -9,11 +9,11 @@ namespace QuoteApp.Api.Tests
     public class QuoteControllerTests
     {
         [Fact]
-        public async Task GetShouldRetrunFiveQuotes()
+        public void GetShouldRetrunFiveQuotes()
         {
             var controller = new QuotationController();
 
-            var result = await controller.Get();
+            var result = controller.Get();
 
             var actual = result.Count();
 
